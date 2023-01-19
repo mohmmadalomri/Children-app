@@ -174,12 +174,12 @@
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('categoryofgames.index')}}"><i data-feather="mail"></i><span
                         class="menu-title text-truncate" data-i18n="Email">تصنيفات  الالعاب</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="app-email.html"><i data-feather="mail"></i><span
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('games.index')}}"><i data-feather="mail"></i><span
                         class="menu-title text-truncate" data-i18n="Email">العب واستمتع</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="app-chat.html">
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('voice-category.index')}}">
                     <i data-feather="message-square"></i>
-                    <span class="menu-title text-truncate" data-i18n="Chat">اختبر معلوماتك</span></a>
+                    <span class="menu-title text-truncate" data-i18n="Chat">Voice Category</span></a>
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="app-todo.html">
                     <i data-feather="check-square"></i>

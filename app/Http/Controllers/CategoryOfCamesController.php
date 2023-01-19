@@ -15,7 +15,7 @@ class CategoryOfCamesController extends Controller
     public function index()
     {
 
-        $categoryofgame = CategoryOfGames::all();
+        $categoryofgame = CategoryOfGames::paginate(7);
         return view('dashboard.categoryofgames.index', compact('categoryofgame'));
     }
 
@@ -77,12 +77,12 @@ class CategoryOfCamesController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$categoryOfGames)
+    public function update(Request $request, $categoryOfGames)
     {
 
-        $categoryOfGames=CategoryOfGames::find($categoryOfGames);
+        $categoryOfGames = CategoryOfGames::find($categoryOfGames);
 
-        $categoryOfGames->update(['name'=> $request->name]);
+        $categoryOfGames->update(['name' => $request->name]);
         $categoryOfGames->save();
         return redirect()->route('categoryofgames.index');
     }
@@ -95,6 +95,8 @@ class CategoryOfCamesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $categoryofgames = Categoryofgames::find($id);
+        $categoryofgames->delete();
+        return redirect()->route('categoryofgames.index');
     }
 }

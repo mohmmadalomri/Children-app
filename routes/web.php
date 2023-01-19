@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\CategoryOfCamesController;
+use App\Http\Controllers\CategoryOfCamesController;
+use App\Http\Controllers\GameController;
+use App\Http\Controllers\VoiceCategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +16,8 @@ use \App\Http\Controllers\CategoryOfCamesController;
 |
 */
 Route::resource('categoryofgames',CategoryOfCamesController::class);
+Route::resource('games',GameController::class);
+Route::resource('voice-category',VoiceCategoryController::class);
 
 Route::get('/', function () {
     return view('welcome');
