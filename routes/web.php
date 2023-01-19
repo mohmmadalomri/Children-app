@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\CategoryOfCamesController;
+use App\Http\Controllers\CategoryOfCamesController;
+use App\Http\Controllers\GameController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +15,7 @@ use \App\Http\Controllers\CategoryOfCamesController;
 |
 */
 Route::resource('categoryofgames',CategoryOfCamesController::class);
+Route::resource('games',GameController::class);
 
 Route::get('/', function () {
     return view('welcome');

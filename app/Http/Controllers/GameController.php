@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoryOfGames;
+use App\Models\Game;
 use Illuminate\Http\Request;
 
-class CategoryOfCamesController extends Controller
+class GameController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,9 @@ class CategoryOfCamesController extends Controller
      */
     public function index()
     {
-
-        $categoryofgame = CategoryOfGames::paginate(7);
-        return view('dashboard.categoryofgames.index', compact('categoryofgame'));
+        $games = Game::all();
+        $category = CategoryOfGames::all();
+        return view('dashboard.games.index', compact('games', 'category'));
     }
 
     /**
@@ -26,9 +27,9 @@ class CategoryOfCamesController extends Controller
      */
     public function create()
     {
-        $categoryofgame = CategoryOfGames::all();
-
-        return view('dashboard.categoryofgames.create', compact('categoryofgame'));
+        $games = Game::all();
+        $gamescategory = CategoryOfGames::all();
+        return view('dashboard.games.create', compact('games', 'gamescategory'));
     }
 
     /**
@@ -39,11 +40,24 @@ class CategoryOfCamesController extends Controller
      */
     public function store(Request $request)
     {
+        $games = Game::all();
         $request->validate([
-            'name' => 'required|string'
+            'name' => 'required|string',
+            'link' => 'string',
+            'description' => 'string',
+            'image' => 'file',
+            'category_id' => 'required|integer',
+            'backgrounder' => 'file',
         ]);
-        $category = CategoryOfGames::create($request->all());
-        return redirect()->route('categoryofgames.index')->with('done', 'category add sucess fuly');
+
+        $data = $request->all();
+        $image = $request->file('image');
+        if ($request->hasFile($data)) {
+            $imgurl = $image->store('image', 'public');
+            $data['image'] = $imgurl;
+        }
+        $game = Game::create($request->all());
+        return redirect()->route('games.index');
     }
 
     /**
@@ -65,9 +79,10 @@ class CategoryOfCamesController extends Controller
      */
     public function edit($id)
     {
-        $categoryofgames = CategoryOfGames::all();
-        $categoryofgames = CategoryOfGames::findOrFail($id);
-        return view('dashboard.categoryofgames.edit', compact('categoryofgames'));
+        $games=Game::all();
+        $category=CategoryOfGames::all();
+        $games=Game::find($id);
+        return view('dashboard.games.edit',compact('games','category'));
     }
 
     /**
@@ -77,14 +92,9 @@ class CategoryOfCamesController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $categoryOfGames)
+    public function update(Request $request, $id)
     {
-
-        $categoryOfGames = CategoryOfGames::find($categoryOfGames);
-
-        $categoryOfGames->update(['name' => $request->name]);
-        $categoryOfGames->save();
-        return redirect()->route('categoryofgames.index');
+        //
     }
 
     /**
@@ -95,8 +105,6 @@ class CategoryOfCamesController extends Controller
      */
     public function destroy($id)
     {
-        $categoryofgames = Categoryofgames::find($id);
-        $categoryofgames->delete();
-        return redirect()->route('categoryofgames.index');
+        //
     }
 }

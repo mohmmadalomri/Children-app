@@ -174,7 +174,7 @@
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('categoryofgames.index')}}"><i data-feather="mail"></i><span
                         class="menu-title text-truncate" data-i18n="Email">تصنيفات  الالعاب</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="app-email.html"><i data-feather="mail"></i><span
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('games.index')}}"><i data-feather="mail"></i><span
                         class="menu-title text-truncate" data-i18n="Email">العب واستمتع</span></a>
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="app-chat.html">
