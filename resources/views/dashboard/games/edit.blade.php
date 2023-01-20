@@ -3,9 +3,12 @@
 @section('body')
     <form class="needs-validation" method="POST" action="{{route('games.update',$games->id)}}" enctype="multipart/form-data">
         @csrf
+<<<<<<< HEAD
         @method('PUT')
 
 
+=======
+>>>>>>> origin/main
         <!-- Tooltip validations start -->
         <section class="tooltip-validations" id="tooltip-validation">
             <div class="row">

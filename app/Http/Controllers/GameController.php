@@ -23,7 +23,11 @@ class GameController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+<<<<<<< HEAD
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+=======
+     * @return \Illuminate\Http\Response
+>>>>>>> origin/main
      */
     public function create()
     {
@@ -94,6 +98,7 @@ class GameController extends Controller
      */
     public function update(Request $request, $id)
     {
+<<<<<<< HEAD
         $games = Game::find($id);
         $request->validate([
             'name' => 'required|string',
@@ -113,6 +118,9 @@ class GameController extends Controller
         $games->update($data);
         $games->save();
         return redirect()->route('games.index');
+=======
+        //
+>>>>>>> origin/main
     }
 
     /**
@@ -123,9 +131,13 @@ class GameController extends Controller
      */
     public function destroy($id)
     {
+<<<<<<< HEAD
         $games=Game::find($id);
         $games->delete();
         return redirect()->route('games.index');
 
+=======
+        //
+>>>>>>> origin/main
     }
 }
