@@ -20,14 +20,19 @@ class GameController extends Controller
         return view('dashboard.games.index', compact('games', 'category'));
     }
 
+    public function allgame(CategoryOfGames $category){
+
+        $category = CategoryOfGames::all();
+
+        $games=Game::where('category_id',$category->id)->get();
+        return view('dashboard.games.allgame', compact('games', 'category'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
-<<<<<<< HEAD
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-=======
      * @return \Illuminate\Http\Response
->>>>>>> origin/main
      */
     public function create()
     {
@@ -70,9 +75,13 @@ class GameController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(CategoryOfGames $category)
     {
-        //
+        $category = CategoryOfGames::all();
+        $games=Game::where('category_id',$category)->get();
+        dd($id);
+
+        return view('dashboard.games.allgame', compact('games', 'category'));
     }
 
     /**
@@ -98,7 +107,6 @@ class GameController extends Controller
      */
     public function update(Request $request, $id)
     {
-<<<<<<< HEAD
         $games = Game::find($id);
         $request->validate([
             'name' => 'required|string',
@@ -118,9 +126,6 @@ class GameController extends Controller
         $games->update($data);
         $games->save();
         return redirect()->route('games.index');
-=======
-        //
->>>>>>> origin/main
     }
 
     /**
@@ -131,13 +136,10 @@ class GameController extends Controller
      */
     public function destroy($id)
     {
-<<<<<<< HEAD
         $games=Game::find($id);
         $games->delete();
         return redirect()->route('games.index');
 
-=======
-        //
->>>>>>> origin/main
+
     }
 }

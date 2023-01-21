@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoryOfGames;
+use App\Models\Game;
 use Illuminate\Http\Request;
 
 class CategoryOfCamesController extends Controller
@@ -54,7 +55,11 @@ class CategoryOfCamesController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $games=Game::where('category_id',$id)->get();
+
+
+        return view('dashboard.games.allgame')->with('games' ,$games);
     }
 
     /**

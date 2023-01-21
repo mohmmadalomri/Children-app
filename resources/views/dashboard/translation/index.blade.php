@@ -5,8 +5,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Game Table </h4>
-                    <a href="{{route('games.create')}}">
+                    <h4 class="card-title"> Transhlation Table </h4>
+                    <a href="{{route('translation.create')}}">
                         <button type="button" class="btn btn-primary">add new</button>
                     </a>
                 </div>
@@ -17,17 +17,15 @@
                         <thead>
                         <tr>
                             <th>Name</th>
-                            <th>description</th>
                             <th>category</th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            @foreach($games as $game )
-                                <td>{{$game->name}}</td>
-                                <td>{{$game->description}}</td>
-                                <td> <a href="{{route('games.show',$game->category)}}" >{{$game->category->name}}</a></td>
+                            @foreach($translation as $item )
+                                <td>{{$item->name}}</td>
+                                <td>{{$item->category->name}}</td>
                                 <td>
                                     <div class="dropdown">
                                         <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0"
@@ -35,16 +33,16 @@
                                             <i data-feather="more-vertical"></i>
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <a class="dropdown-item" href="{{route('games.edit',$game->id)}}">
-                                            <i data-feather="edit-2" class="me-50"></i>
-                                            <span>Edit</span>
+                                            <a class="dropdown-item" href="{{route('translation.edit',$item->id)}}">
+                                                <i data-feather="edit-2" class="me-50"></i>
+                                                <span>Edit</span>
                                             </a>
-                                            <form method="post" action="{{route('games.destroy',$game->id)}}">
-                                            @csrf
-                                            @method('delete')
-                                            <button class="dropdown-item" type="submit">
-                                                <i data-feather="trash" class="me-50"></i>
-                                                <span>Delete</span></button>
+                                            <form method="post" action="{{route('translation.destroy',$item->id)}}">
+                                                @csrf
+                                                @method('delete')
+                                                <button class="dropdown-item" type="submit">
+                                                    <i data-feather="trash" class="me-50"></i>
+                                                    <span>Delete</span></button>
                                             </form>
                                         </div>
                                     </div>
@@ -58,5 +56,5 @@
         </div>
     </div>
     <!-- Basic Tables end -->
-{{--    {{ $game->links() }}--}}
+    {{--    {{ $game->links() }}--}}
 @endsection

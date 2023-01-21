@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Game extends Model
+class Translation extends Model
 {
     use HasFactory;
-    protected  $fillable=['name','description','image','link','category_id','backgrounder'];
+
+    protected $fillable=['name','link','image','category-id'];
 
     public function category(){
-        return $this->belongsTo(CategoryOfGames::class);
+        return $this->belongsTo(TranslationCategory::class,'category-id','id');
     }
 }

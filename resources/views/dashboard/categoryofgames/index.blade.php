@@ -1,5 +1,4 @@
 @extends('dashboard');
-
 @section('body')
     <!-- Basic Tables start -->
     <div class="row" id="basic-table">
@@ -10,12 +9,8 @@
                     <a href="{{route('categoryofgames.create')}}">
                         <button type="button" class="btn btn-primary">add new</button>
                     </a>
-
                 </div>
-
                 <div class="card-body">
-
-
                 </div>
                 <div class="table-responsive">
                     <table class="table">
@@ -23,16 +18,12 @@
                         <tr>
                             <th>Name</th>
                             <th>Action</th>
-
                         </tr>
                         </thead>
                         <tbody>
-
-
                         <tr>
                             @foreach($categoryofgame as $item )
-                                <td>{{$item->name}}</td>
-
+                                <td> <a href="{{route('categoryofgames.show',$item->id)}}">  {{$item->name}}</a></td>
                                 <td>
                                     <div class="dropdown">
                                         <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0"
@@ -50,9 +41,6 @@
                                              <button class="dropdown-item" type="submit">
                                                     <i data-feather="trash" class="me-50"></i>
                                                     <span>Delete</span></button>
-
-
-
                                             </form>
                                         </div>
                                     </div>

@@ -1,8 +1,14 @@
 @extends('dashboard');
+
 @section('body')
     <form class="needs-validation" method="POST" action="{{route('games.update',$games->id)}}" enctype="multipart/form-data">
         @csrf
+        <<<<<<< HEAD
         @method('PUT')
+
+
+        =======
+        >>>>>>> origin/main
         <!-- Tooltip validations start -->
         <section class="tooltip-validations" id="tooltip-validation">
             <div class="row">
@@ -12,6 +18,8 @@
                             <h4 class="card-title">Edit Game</h4>
                         </div>
                         <div class="card-body">
+
+
                             <div class="row g-1">
                                 <div class="col-md-4 col-12 mb-3 position-relative">
                                     <label class="form-label" for="validationTooltip01"> Name</label>
@@ -39,6 +47,7 @@
             </div>
         </section>
         <!-- Tooltip validations end -->
+
         <!-- Basic File Browser start -->
         <section id="input-file-browser">
             <div class="row">
@@ -82,9 +91,13 @@
                                     @endforeach
                                 </select>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </section>
         <button class="btn btn-primary" type="submit">Submit</button>

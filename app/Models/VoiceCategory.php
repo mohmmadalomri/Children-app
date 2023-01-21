@@ -10,5 +10,7 @@ class VoiceCategory extends Model
     use HasFactory;
     protected  $fillable=['name'];
 
-
+    public function voices(){
+        return $this->hasMany(Voice::class);
+    }
 }

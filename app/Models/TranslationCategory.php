@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CategoryOfGames extends Model
+class TranslationCategory extends Model
 {
     use HasFactory;
     protected $fillable=['name'];
-    protected $hidden=['created_at','updated_at'];
 
-    public function games(){
-        return $this->hasMany(Game::class);
+    public function translation(){
+        return $this->hasMany(Translation::class,'category-id','id');
     }
+
 }

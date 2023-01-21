@@ -1,6 +1,6 @@
 @extends('dashboard');
 @section('body')
-    <form class="needs-validation" method="POST" action="{{route('games.update',$games->id)}}" enctype="multipart/form-data">
+    <form class="needs-validation" method="POST" action="{{route('translation.update',$games->id)}}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <!-- Tooltip validations start -->
@@ -53,10 +53,7 @@
                                     <label for="formFile" class="form-label">Image</label>
                                     <input class="form-control" name="image" type="file" id="image"/>
                                 </div>
-                                <div class="col-lg-6 col-md-12 mb-1 mb-sm-0">
-                                    <label for="formFile" class="form-label">backgrounder</label>
-                                    <input class="form-control" name="backgrounder" type="file" id="backgrounder"/>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -76,7 +73,7 @@
                             <!-- Basic Select -->
                             <div class="mb-1">
                                 <label class="form-label" for="category_id">Basic Select</label>
-                                <select class="form-select" id="category_id" name="category_id">
+                                <select class="form-select" id="category-id" name="category-id">
                                     @foreach($category as $item)
                                         <option value="{{$item->id}}" selected="{{$games->category->name}}" > {{$item->name}}</option>
                                     @endforeach
