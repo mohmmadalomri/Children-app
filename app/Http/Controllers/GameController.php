@@ -98,7 +98,6 @@ class GameController extends Controller
      */
     public function update(Request $request, $id)
     {
-<<<<<<< HEAD
         $games = Game::find($id);
         $request->validate([
             'name' => 'required|string',
@@ -118,9 +117,6 @@ class GameController extends Controller
         $games->update($data);
         $games->save();
         return redirect()->route('games.index');
-=======
-        //
->>>>>>> origin/main
     }
 
     /**
@@ -131,13 +127,10 @@ class GameController extends Controller
      */
     public function destroy($id)
     {
-<<<<<<< HEAD
         $games=Game::find($id);
         $games->delete();
         return redirect()->route('games.index');
 
-=======
-        //
->>>>>>> origin/main
+
     }
 }

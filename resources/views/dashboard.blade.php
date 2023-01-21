@@ -181,9 +181,9 @@
                     <i data-feather="message-square"></i>
                     <span class="menu-title text-truncate" data-i18n="Chat">Voice Category</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="app-todo.html">
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('voice.index')}}">
                     <i data-feather="check-square"></i>
-                    <span class="menu-title text-truncate" data-i18n="Todo">تلاوات القارئ الصغير</span></a>
+                    <span class="menu-title text-truncate" data-i18n="Todo"> Add new Voice </span></a>
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="app-calendar.html">
                     <i data-feather="calendar"></i>
