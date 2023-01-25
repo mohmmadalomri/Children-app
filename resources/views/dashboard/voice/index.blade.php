@@ -27,7 +27,11 @@
                         <tr>
                             @foreach($voices as $item )
                                 <td>{{$item->name}}</td>
+<<<<<<< HEAD
                                 <td>{{$item->category->name}}</td>
+=======
+                                <td>{{$item->voicecategory}}</td>
+>>>>>>> origin/main
                                 <td><audio controls>
                                         <source src="{{ route('voice.show', array($item->id)) }}" type="audio/mpeg">
                                     </audio>

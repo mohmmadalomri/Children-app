@@ -45,7 +45,11 @@ class VoiceController extends Controller
     {
 //        $request->validate([
 //            'name'=>'required|string',
+<<<<<<< HEAD
 //            'voice'=>'required'
+=======
+//            'voice'=>'required|mimes:mp3,wav,x-m4a,ogg'
+>>>>>>> origin/main
 //        ]);
         $data=$request->all();
 //        $voice_file = $request->file('voice_file');

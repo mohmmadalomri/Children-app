@@ -11,6 +11,10 @@ class VoiceCategory extends Model
     protected  $fillable=['name'];
 
     public function voices(){
+<<<<<<< HEAD
         return $this->hasMany(Voice::class);
+=======
+        return $this->hasMany(Voice::class,'voicecategory','id');
+>>>>>>> origin/main
     }
 }

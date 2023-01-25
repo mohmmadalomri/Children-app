@@ -16,7 +16,11 @@ return new class extends Migration
         Schema::create('voices', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+<<<<<<< HEAD
             $table->foreignId('category_id')->references('id')->on('voice_categories');
+=======
+            $table->foreignId('voicecategory')->references('id')->on('voice_categories');
+>>>>>>> origin/main
             $table->string('voice_file');
             $table->timestamps();
         });

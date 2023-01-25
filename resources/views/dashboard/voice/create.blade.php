@@ -65,7 +65,11 @@
                             <!-- Basic Select -->
                             <div class="mb-1">
                                 <label class="form-label" for="category_id">Basic Select</label>
+<<<<<<< HEAD
                                 <select class="form-select" id="category_id" name="category_id">
+=======
+                                <select class="form-select" id="voicecategory" name="voicecategory">
+>>>>>>> origin/main
                                     @foreach($voicecategory as $item)
                                         <option value="{{$item->id}}">{{$item->name}}</option>
                                     @endforeach

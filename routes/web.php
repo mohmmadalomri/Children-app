@@ -6,8 +6,11 @@ use App\Http\Controllers\CategoryOfCamesController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\VoiceCategoryController;
 use App\Http\Controllers\VoiceController;
+<<<<<<< HEAD
 use App\Http\Controllers\TranslationCategoryController;
 use App\Http\Controllers\TranslationController;
+=======
+>>>>>>> origin/main
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,9 +25,12 @@ Route::resource('categoryofgames',CategoryOfCamesController::class);
 Route::resource('games',GameController::class);
 Route::resource('voice-category',VoiceCategoryController::class);
 Route::resource('voice',VoiceController::class);
+<<<<<<< HEAD
 Route::resource('translation-category',TranslationCategoryController::class);
 Route::resource('translation',TranslationController::class);
 
+=======
+>>>>>>> origin/main
 
 Route::get('/', function () {
     return view('welcome');
