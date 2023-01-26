@@ -95,7 +95,7 @@
                             class="avatar-status-online"></span></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
-                    <a class="dropdown-item" href="page-profile.html">
+                    <a class="dropdown-item" href="{{route('profile.edit')}}">
                         <i class="me-50" data-feather="user"></i> Profile</a>
 
 

@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('voices', function (Blueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('category_id')->references('id')->on('voice_categories');
-            $table->foreignId('voicecategory')->references('id')->on('voice_categories');
-            $table->string('voice_file');
+            $table->string('question');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('voices');
+        Schema::dropIfExists('questions');
     }
 };

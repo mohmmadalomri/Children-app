@@ -6,8 +6,8 @@ use App\Http\Controllers\Api\GameCategoryController;
 use App\Http\Controllers\Api\GameController;
 use App\Http\Controllers\Api\VoiceCategoryController;
 use App\Http\Controllers\Api\VoiceController;
-
-
+use App\Http\Controllers\Api\TranslationCategoryController;
+use App\Http\Controllers\Api\TranslationController;
 
 
 /*
@@ -31,3 +31,5 @@ Route::apiResource('game-category',GameCategoryController::class);
 Route::apiResource('games',GameController::class);
 Route::apiResource('voice-category',VoiceCategoryController::class);
 Route::apiResource('voice',VoiceController::class);
+Route::apiResource('translation-category',TranslationCategoryController::class);
+Route::apiResource('translation',TranslationController::class);
