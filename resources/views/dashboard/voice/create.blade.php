@@ -11,8 +11,6 @@
                             <h4 class="card-title">Add new Game</h4>
                         </div>
                         <div class="card-body">
-
-
                             <div class="row g-1">
                                 <div class="col-md-4 col-12 mb-3 position-relative">
                                     <label class="form-label" for="validationTooltip01"> Name</label>
@@ -64,12 +62,7 @@
                         <div class="card-body">
                             <!-- Basic Select -->
                             <div class="mb-1">
-                                <label class="form-label" for="category_id">Basic Select</label>
-<<<<<<< HEAD
                                 <select class="form-select" id="category_id" name="category_id">
-=======
-                                <select class="form-select" id="voicecategory" name="voicecategory">
->>>>>>> origin/main
                                     @foreach($voicecategory as $item)
                                         <option value="{{$item->id}}">{{$item->name}}</option>
                                     @endforeach

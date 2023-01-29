@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Translation extends Model
 {
     use HasFactory;
+    protected $hidden=['created_at','updated_at'];
 
     protected $fillable=['name','link','image','category-id'];
 

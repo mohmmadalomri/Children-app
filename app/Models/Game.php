@@ -9,6 +9,7 @@ class Game extends Model
 {
     use HasFactory;
     protected  $fillable=['name','description','image','link','category_id','backgrounder'];
+    protected $hidden=['created_at','updated_at'];
 
     public function category(){
         return $this->belongsTo(CategoryOfGames::class);

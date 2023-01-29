@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('category_id')->references('id')->on('voice_categories');
-            $table->foreignId('voicecategory')->references('id')->on('voice_categories');
             $table->string('voice_file');
             $table->timestamps();
         });

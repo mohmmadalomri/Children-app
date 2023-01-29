@@ -9,12 +9,9 @@ class VoiceCategory extends Model
 {
     use HasFactory;
     protected  $fillable=['name'];
+    protected $hidden=['created_at','updated_at'];
 
     public function voices(){
-<<<<<<< HEAD
-        return $this->hasMany(Voice::class);
-=======
-        return $this->hasMany(Voice::class,'voicecategory','id');
->>>>>>> origin/main
+        return $this->hasMany(Voice::class,'category_id','id');
     }
 }

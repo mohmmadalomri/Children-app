@@ -1,12 +1,11 @@
 @extends('dashboard');
-
 @section('body')
     <!-- Basic Tables start -->
     <div class="row" id="basic-table">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Game Table </h4>
+                    <h4 class="card-title"> Voice Table </h4>
                     <a href="{{route('voice.create')}}">
                         <button type="button" class="btn btn-primary">add new</button>
                     </a>
@@ -27,16 +26,11 @@
                         <tr>
                             @foreach($voices as $item )
                                 <td>{{$item->name}}</td>
-<<<<<<< HEAD
                                 <td>{{$item->category->name}}</td>
-=======
-                                <td>{{$item->voicecategory}}</td>
->>>>>>> origin/main
                                 <td><audio controls>
                                         <source src="{{ route('voice.show', array($item->id)) }}" type="audio/mpeg">
                                     </audio>
                                 </td>
-
                                 <td>
                                     <div class="dropdown">
                                         <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0"

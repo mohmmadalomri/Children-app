@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Translation;
 use App\Models\TranslationCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TranslationController extends Controller
 {
@@ -47,10 +48,10 @@ class TranslationController extends Controller
         ]);
         $data=$request->all();
         $image=$request->file('image');
-        if ($request->hasFile($data)){
-            $imageurl=$image->store('image','public');
-            $data['image']=$imageurl;
-        }
+        $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
+        $path = Storage::putFileAs('public/images', $image, $fileName);
+        $url = Storage::url($path);
+        $data['image']=$url;
         $translation=Translation::create($data);
         return redirect()->route('translation.index');
     }

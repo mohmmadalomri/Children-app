@@ -43,23 +43,12 @@ class VoiceController extends Controller
      */
     public function store(Request $request)
     {
-//        $request->validate([
-//            'name'=>'required|string',
-<<<<<<< HEAD
-//            'voice'=>'required'
-=======
-//            'voice'=>'required|mimes:mp3,wav,x-m4a,ogg'
->>>>>>> origin/main
-//        ]);
+        $request->validate([
+            'voice_file' => 'required|file',
+            'name'=>'required|string'
+        ]);
         $data=$request->all();
 //        $voice_file = $request->file('voice_file');
-//        $path = $voice_file->store('public/voice_files');
-
-//        $voice_file = $request->file('voice_file');
-//        if ($request->hasFile($data)) {
-//            $voice_fileurl = $voice_file->store('voice', 'public');
-//            $data['voice_file'] = $voice_fileurl;
-//        }
 
         if($request->hasFile('voice_file')){
             $uniqueid=uniqid();
@@ -71,6 +60,7 @@ class VoiceController extends Controller
             $audiopath=url('/storage/upload/files/audio/'.$filename);
             $path=$file->storeAs('public/upload/files/audio/',$filename);
             $all_audios=$audiopath;
+            $data['voice_file']=$audiopath;
         }
 
         $voicefile=Voice::create($data);
@@ -104,9 +94,12 @@ class VoiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit( $id)
     {
-        //
+        $voicecategory=VoiceCategory::all();
+
+        $voice=Voice::find($id);
+        return view('dashboard.voice.edit',compact('voice','voicecategory'));
     }
 
     /**
@@ -118,7 +111,28 @@ class VoiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $voice=Voice::find($id);
+        $request->validate([
+            'voice_file' => 'required|file',
+            'name'=>'required|string'
+        ]);
+        $data=$request->all();
+//        $voice_file = $request->file('voice_file');
+
+        if($request->hasFile('voice_file')){
+            $uniqueid=uniqid();
+            $file = $request->file('voice_file');
+            $originalname=$request->file('voice_file')->getClientOriginalName();
+            $size=$request->file('voice_file')->getSize();
+            $extension=$request->file('voice_file')->getClientOriginalExtension();
+            $filename=Carbon::now()->format('Ymd').''.$uniqueid.'.'.$extension;
+            $audiopath=url('/storage/upload/files/audio/'.$filename);
+            $path=$file->storeAs('public/upload/files/audio/',$filename);
+            $all_audios=$audiopath;
+            $data['voice_file']=$audiopath;
+        }
+        $voice->update($request->all());
+        return redirect()->route('voice.index');
     }
 
     /**
@@ -129,6 +143,8 @@ class VoiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $voice=Voice::find($id);
+        $voice->delete();
+        return redirect()->route('voice.index');
     }
 }

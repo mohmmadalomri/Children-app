@@ -8,15 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Voice extends Model
 {
     use HasFactory;
-<<<<<<< HEAD
+    protected $hidden=['created_at','updated_at'];
+
     protected $fillable=['voice_file','category_id','name'];
     public function category(){
-        return $this->belongsTo(VoiceCategory::class);
-=======
-    protected $fillable=['voice_file','voicecategory','name'];
-    public function voicecategory(){
-        return $this->belongsTo(VoiceCategory::class,'id','voicecategory');
->>>>>>> origin/main
-
+        return $this->belongsTo(VoiceCategory::class,'category_id','id');
     }
+
 }

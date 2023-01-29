@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\CategoryOfGames;
 use App\Models\Game;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Nette\Utils\Image;
 
 class GameController extends Controller
 {
@@ -54,18 +56,25 @@ class GameController extends Controller
             'name' => 'required|string',
             'link' => 'string',
             'description' => 'string',
-            'image' => 'file',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'category_id' => 'required|integer',
-            'backgrounder' => 'file',
+            'backgrounder' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         $data = $request->all();
         $image = $request->file('image');
-        if ($request->hasFile($data)) {
-            $imgurl = $image->store('image', 'public');
-            $data['image'] = $imgurl;
-        }
-        $game = Game::create($request->all());
+        $backgrounder=$request->file('backgrounder');
+        $backgrounderfileName=uniqid() . '.' . $backgrounder->getClientOriginalExtension();
+        $backgrounderpath=Storage::putFileAs('public/images', $backgrounder, $backgrounderfileName);
+        $backgrounderurl=Storage::url($backgrounderpath);
+        $data['backgrounder']=$backgrounderurl;
+
+        $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
+        $path = Storage::putFileAs('public/images', $image, $fileName);
+        $url = Storage::url($path);
+        $data['image']=$url;
+
+        $game = Game::create($data);
         return redirect()->route('games.index');
     }
 
