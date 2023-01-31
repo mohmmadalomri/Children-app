@@ -11,7 +11,7 @@
     <meta name="keywords"
           content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Dashboard ecommerce - Vuexy - Bootstrap HTML admin template</title>
+    <title>Dashboard </title>
     <link rel="apple-touch-icon" href="{{asset('app-assets/images/ico/apple-icon-120.png')}}">
     <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
@@ -82,17 +82,15 @@
                 </div>
             </li>
 
-
             <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link"
                                                            id="dropdown-user" href="#" data-bs-toggle="dropdown"
                                                            aria-haspopup="true" aria-expanded="false">
                     <div class="user-nav d-sm-flex d-none"><span
                             class="user-name fw-bolder">{{\Illuminate\Support\Facades\Auth::user()->name}}</span><span
                             class="user-status">Admin</span></div>
-                    <span class="avatar"><img class="round"
-                                              src="../../../app-assets/images/portrait/small/avatar-s-11.jpg"
-                                              alt="avatar" height="40" width="40"><span
-                            class="avatar-status-online"></span></span>
+                    <span class="avatar">
+                        <img class="round" src="../../../app-assets/images/portrait/small/avatar-s-11.jpg" alt="avatar"
+                             height="40" width="40"><span class="avatar-status-online"></span></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
                     <a class="dropdown-item" href="{{route('profile.edit')}}">
@@ -171,30 +169,36 @@
             <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i
                     data-feather="more-horizontal"></i>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('categoryofgames.index')}}"><i data-feather="mail"></i><span
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('categoryofgames.index')}}"><i
+                        data-feather="life-buoy"></i><span
                         class="menu-title text-truncate" data-i18n="Email">تصنيفات  الالعاب</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('games.index')}}"><i data-feather="mail"></i><span
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('games.index')}}"><i
+                        data-feather="life-buoy"></i><span
                         class="menu-title text-truncate" data-i18n="Email">العب واستمتع</span></a>
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('voice-category.index')}}">
-                    <i data-feather="message-square"></i>
+                    <i data-feather="mic"></i>
                     <span class="menu-title text-truncate" data-i18n="Chat">Voice Category</span></a>
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('voice.index')}}">
-                    <i data-feather="check-square"></i>
+                    <i data-feather="mic"></i>
                     <span class="menu-title text-truncate" data-i18n="Todo"> Add new Voice </span></a>
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('translation-category.index')}}">
-                    <i data-feather="calendar"></i>
+                    <i data-feather="type"></i>
                     <span class="menu-title text-truncate" data-i18n="Calendar">Translation Category</span></a>
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('translation.index')}}">
-                    <i data-feather="calendar"></i>
-                    <span class="menu-title text-truncate" data-i18n="Calendar">Translation </span></a>
+                    <i data-feather="type"></i>
+                    <span class="menu-title text-truncate" data-i18n="Calendar">Translation</span></a>
+            </li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('question.index')}}">
+                    <i data-feather="type"></i>
+                    <span class="menu-title text-truncate" data-i18n="Calendar">Question </span></a>
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="app-calendar.html">
-                    <i data-feather="calendar"></i>
+                    <i data-feather="mail"></i>
                     <span class="menu-title text-truncate" data-i18n="Calendar">تواصل معنا</span></a>
             </li>
 
@@ -219,15 +223,19 @@
 </div>
 <!-- END: Content-->
 
-<div class="sidenav-overlay"></div>
-<div class="drag-target"></div>
+{{--<div class="sidenav-overlay"></div>--}}
+{{--<div class="drag-target"></div>--}}
 
 <!-- BEGIN: Footer-->
 <footer class="footer footer-static footer-light">
-    <p class="clearfix mb-0"><span class="float-md-start d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2021<a
-                class="ms-25" href="https://1.envato.market/pixinvent_portfolio" target="_blank">Pixinvent</a><span
+    <p class="clearfix mb-0"><span class="float-md-start d-block d-md-inline-block mt-25">COPYRIGHT &copy;
+
+<script>
+    var today = new Date();
+    document.write(today.getFullYear());
+</script><a class="ms-25" href="https://1.envato.market/pixinvent_portfolio" target="_blank"></a><span
                 class="d-none d-sm-inline-block">, All rights Reserved</span></span><span
-            class="float-md-end d-none d-md-block">Hand-crafted & Made with<i data-feather="heart"></i></span></p>
+            class="float-md-end d-none d-md-block">Hand-crafted & Made with love<i data-feather="heart"></i></span></p>
 </footer>
 <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
 <!-- END: Footer-->

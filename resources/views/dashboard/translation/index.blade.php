@@ -17,7 +17,7 @@
                         <thead>
                         <tr>
                             <th>Name</th>
-                            <th>category</th>
+                            <th>Image</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -25,7 +25,7 @@
                         <tr>
                             @foreach($translation as $item )
                                 <td>{{$item->name}}</td>
-                                <td>{{$item->category->name}}</td>
+                                <td><img src="{{asset($item->image)}}" style="height: 50px" style="width: 50px" ></td>
                                 <td>
                                     <div class="dropdown">
                                         <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0"

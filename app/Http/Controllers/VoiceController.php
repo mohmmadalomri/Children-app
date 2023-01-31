@@ -73,9 +73,9 @@ class VoiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Track $track)
+    public function show(Voice $voice)
     {
-        $path = storage_path("app/storage/upload/files/audio/");
+        $path = storage_path("app/public/upload/files/audio/".$voice->voice_file);
 
         if(!File::exists($path)) abort(404);
 

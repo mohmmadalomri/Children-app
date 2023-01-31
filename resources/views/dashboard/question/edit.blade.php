@@ -1,27 +1,28 @@
 @extends('dashboard');
 @section('body')
-    <form class="needs-validation" method="POST" action="{{route('translation.store')}}" enctype="multipart/form-data">
+    <form class="needs-validation" method="POST" action="{{route('question.update',$question->id)}}" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
         <!-- Tooltip validations start -->
         <section class="tooltip-validations" id="tooltip-validation">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Add new Translation</h4>
+                            <h4 class="card-title">Edit Question</h4>
                         </div>
                         <div class="card-body">
                             <div class="row g-1">
                                 <div class="col-md-4 col-12 mb-3 position-relative">
                                     <label class="form-label" for="validationTooltip01"> Name</label>
                                     <input type="text" class="form-control" id="validationTooltip01" name="name"
-                                           placeholder="name" required/>
+                                           placeholder="name" value="{{$question->name}}" required/>
                                     <div class="valid-tooltip">Looks good!</div>
                                 </div>
 
                                 <div class="col-md-4 col-12 mb-3 position-relative">
                                     <label class="form-label" for="validationTooltip03">link</label>
-                                    <input type="text" class="form-control" id="validationTooltip03" name="link"
+                                    <input type="text" class="form-control" value="{{$question->link}}"  id="validationTooltip03" name="link"
                                            required/>
                                     <div class="invalid-tooltip"></div>
                                 </div>
@@ -47,6 +48,9 @@
                                     <label for="formFile" class="form-label">Image</label>
                                     <input class="form-control" name="image" type="file" id="image"/>
                                 </div>
+                                <div class="col-lg-6 col-md-12 mb-1 mb-sm-0">
+                                    <label for="formFile" class="form-label">Image</label>
+                                    <img src="{{asset($question->image)}}" style="height: 100px" style="width: 100px">                                </div>
 
                             </div>
                         </div>
@@ -67,9 +71,9 @@
                             <!-- Basic Select -->
                             <div class="mb-1">
                                 <label class="form-label" for="category_id">Basic Select</label>
-                                <select class="form-select" id="category-id" name="category-id">
+                                <select class="form-select" id="category_id" name="category_id">
                                     @foreach($category as $item)
-                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                        <option value="{{$item->id}}" selected="{{$item->category}}" > {{$item->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

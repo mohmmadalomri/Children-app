@@ -5,8 +5,8 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> Voice Table </h4>
-                    <a href="{{route('voice.create')}}">
+                    <h4 class="card-title"> Question Table </h4>
+                    <a href="{{route('question.create')}}">
                         <button type="button" class="btn btn-primary">add new</button>
                     </a>
                 </div>
@@ -17,20 +17,15 @@
                         <thead>
                         <tr>
                             <th>Name</th>
-{{--                            <th>Category</th>--}}
-                            <th>voice</th>
+                            <th>Image</th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            @foreach($voices as $item )
+                            @foreach($question as $item )
                                 <td>{{$item->name}}</td>
-{{--                                <td>{{$item->category->name}}</td>--}}
-                                <td><audio controls>
-                                        <source src="{{ route('voice.show', array($item->id)) }}" type="audio/mpeg">
-                                    </audio>
-                                </td>
+                                <td><img src="{{ asset($item->image) }}" style="height: 50px" style="width: 50px"  alr="image"></td>
                                 <td>
                                     <div class="dropdown">
                                         <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0"
@@ -38,17 +33,16 @@
                                             <i data-feather="more-vertical"></i>
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-end">
-                                            <a class="dropdown-item" href="{{route('voice.edit',$item->id)}}">
+                                            <a class="dropdown-item" href="{{route('question.edit',$item->id)}}">
                                                 <i data-feather="edit-2" class="me-50"></i>
                                                 <span>Edit</span>
                                             </a>
-                                            <form method="post" action="{{route('voice.destroy',$item->id)}}">
+                                            <form method="post" action="{{route('question.destroy',$item->id)}}">
                                                 @csrf
                                                 @method('delete')
                                                 <button class="dropdown-item" type="submit">
                                                     <i data-feather="trash" class="me-50"></i>
                                                     <span>Delete</span></button>
-
                                             </form>
                                         </div>
                                     </div>
@@ -60,8 +54,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
     <!-- Basic Tables end -->
     {{--    {{ $game->links() }}--}}

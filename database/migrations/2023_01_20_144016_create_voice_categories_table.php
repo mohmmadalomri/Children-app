@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('voice_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->softDeletes('deleted_at');
+
             $table->timestamps();
         });
     }

@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->string('question');
+            $table->string('name');
+            $table->string('link');
+            $table->string('image');
+            $table->foreignId('category_id')->references('id')->on('category_of_games');
             $table->timestamps();
         });
     }

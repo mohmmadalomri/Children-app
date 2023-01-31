@@ -1,6 +1,6 @@
 @extends('dashboard');
 @section('body')
-    <form class="needs-validation" method="POST" action="{{route('translation.store')}}" enctype="multipart/form-data">
+    <form class="needs-validation" method="POST" action="{{route('question.store')}}" enctype="multipart/form-data">
         @csrf
         <!-- Tooltip validations start -->
         <section class="tooltip-validations" id="tooltip-validation">
@@ -8,7 +8,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Add new Translation</h4>
+                            <h4 class="card-title">Add new Question</h4>
                         </div>
                         <div class="card-body">
                             <div class="row g-1">
@@ -21,7 +21,7 @@
 
                                 <div class="col-md-4 col-12 mb-3 position-relative">
                                     <label class="form-label" for="validationTooltip03">link</label>
-                                    <input type="text" class="form-control" id="validationTooltip03" name="link"
+                                    <input type="url" class="form-control" id="link" name="link"
                                            required/>
                                     <div class="invalid-tooltip"></div>
                                 </div>
@@ -67,7 +67,7 @@
                             <!-- Basic Select -->
                             <div class="mb-1">
                                 <label class="form-label" for="category_id">Basic Select</label>
-                                <select class="form-select" id="category-id" name="category-id">
+                                <select class="form-select" id="category_id" name="category_id">
                                     @foreach($category as $item)
                                         <option value="{{$item->id}}">{{$item->name}}</option>
                                     @endforeach

@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('category_of_games', function (Blueprint $table) {
             $table->id();
+            $table->softDeletes('deleted_at');
             $table->string('name');
             $table->timestamps();
         });
