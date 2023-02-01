@@ -1,6 +1,6 @@
 @extends('dashboard');
 @section('body')
-    <form class="needs-validation" method="POST" action="{{route('translation.update',$games->id)}}" enctype="multipart/form-data">
+    <form class="needs-validation" method="POST" action="{{route('translation.update',$translation->id)}}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <!-- Tooltip validations start -->
@@ -16,18 +16,13 @@
                                 <div class="col-md-4 col-12 mb-3 position-relative">
                                     <label class="form-label" for="validationTooltip01"> Name</label>
                                     <input type="text" class="form-control" id="validationTooltip01" name="name"
-                                           placeholder="name" value="{{$games->name}}" required/>
+                                           placeholder="name" value="{{$translation->name}}" required/>
                                     <div class="valid-tooltip">Looks good!</div>
                                 </div>
-                                <div class="col-md-4 col-12 mb-3 position-relative">
-                                    <label class="form-label" for="validationTooltip02">description</label>
-                                    <input type="text" class="form-control" id="validationTooltip02"
-                                           placeholder="Last name" value="{{$games->description}}"  name="description" required/>
-                                    <div class="valid-tooltip">Looks good!</div>
-                                </div>
+
                                 <div class="col-md-4 col-12 mb-3 position-relative">
                                     <label class="form-label" for="validationTooltip03">link</label>
-                                    <input type="text" class="form-control" value="{{$games->link}}"  id="validationTooltip03" name="link"
+                                    <input type="text" class="form-control" value="{{$translation->link}}"  id="validationTooltip03" name="link"
                                            required/>
                                     <div class="invalid-tooltip"></div>
                                 </div>
@@ -75,7 +70,7 @@
                                 <label class="form-label" for="category_id">Basic Select</label>
                                 <select class="form-select" id="category-id" name="category-id">
                                     @foreach($category as $item)
-                                        <option value="{{$item->id}}" selected="{{$games->category->name}}" > {{$item->name}}</option>
+                                        <option value="{{$item->id}}" selected="{{$translation->category->name}}" > {{$item->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

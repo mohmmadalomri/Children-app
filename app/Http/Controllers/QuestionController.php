@@ -7,6 +7,7 @@ use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use function PHPUnit\Framework\isInstanceOf;
 
 class QuestionController extends Controller
 {
@@ -51,10 +52,13 @@ class QuestionController extends Controller
 
         $data=$request->all();
         $image = $request->file('image');
-        $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
-        $path = Storage::putFileAs('public/images', $image, $fileName);
-        $url = Storage::url($path);
-        $data['image']=$url;
+        if ($request->hasFile('image')){
+            $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
+            $path = Storage::putFileAs('public/images', $image, $fileName);
+            $url = Storage::url($path);
+            $data['image']=$url;
+        }
+
         $question=Question::create($data);
         return redirect()->route('question.index');
 
@@ -94,17 +98,25 @@ class QuestionController extends Controller
     public function update(Request $request, $id)
     {
         $question=Question::find($id);
+        $request->validate([
+            'name'=>'required|string',
+            'link'=>'required|url',
+            'image'=>'required|image',
+        ]);
         $oldImage = public_path("/uploads/items/{$question->image}");
-        if (File::exists($oldImage)) {
-            File::delete($oldImage);
+        if (File::exists('public/images'.$oldImage)) {
+            File::delete('public/images'.$oldImage);
         }
 
         $data=$request->all();
         $image = $request->file('image');
-        $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
-        $path = Storage::putFileAs('public/images', $image, $fileName);
-        $url = Storage::url($path);
-        $data['image']=$url;
+        if ($request->hasFile('image')){
+            $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
+            $path = Storage::putFileAs('public/images', $image, $fileName);
+            $url = Storage::url($path);
+            $data['image']=$url;
+        }
+
         $question->update($data);
         return redirect()->route('question.index');
 

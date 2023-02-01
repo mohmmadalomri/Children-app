@@ -22,7 +22,7 @@
 
                                 <div class="col-md-4 col-12 mb-3 position-relative">
                                     <label class="form-label" for="validationTooltip03">link</label>
-                                    <input type="text" class="form-control" value="{{$question->link}}"  id="validationTooltip03" name="link"
+                                    <input type="url" class="form-control" value="{{$question->link}}"  id="validationTooltip03" name="link"
                                            required/>
                                     <div class="invalid-tooltip"></div>
                                 </div>

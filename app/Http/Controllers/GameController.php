@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CategoryOfGames;
 use App\Models\Game;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Nette\Utils\Image;
 
@@ -22,11 +23,12 @@ class GameController extends Controller
         return view('dashboard.games.index', compact('games', 'category'));
     }
 
-    public function allgame(CategoryOfGames $category){
+    public function allgame(CategoryOfGames $category)
+    {
 
         $category = CategoryOfGames::all();
 
-        $games=Game::where('category_id',$category->id)->get();
+        $games = Game::where('category_id', $category->id)->get();
         return view('dashboard.games.allgame', compact('games', 'category'));
     }
 
@@ -62,17 +64,23 @@ class GameController extends Controller
         ]);
 
         $data = $request->all();
-        $backgrounder=$request->file('backgrounder');
-        $backgrounderfileName=uniqid() . '.' . $backgrounder->getClientOriginalExtension();
-        $backgrounderpath=Storage::putFileAs('public/images', $backgrounder, $backgrounderfileName);
-        $backgrounderurl=Storage::url($backgrounderpath);
-        $data['backgrounder']=$backgrounderurl;
+        $backgrounder = $request->file('backgrounder');
+
+        if ($request->file('backgrounder')) {
+            $backgrounderfileName = uniqid() . '.' . $backgrounder->getClientOriginalExtension();
+            $backgrounderpath = Storage::putFileAs('public/images', $backgrounder, $backgrounderfileName);
+            $backgrounderurl = Storage::url($backgrounderpath);
+            $data['backgrounder'] = $backgrounderurl;
+        }
 
         $image = $request->file('image');
-        $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
-        $path = Storage::putFileAs('public/images', $image, $fileName);
-        $url = Storage::url($path);
-        $data['image']=$url;
+        if ($request->file('image')) {
+            $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
+            $path = Storage::putFileAs('public/images', $image, $fileName);
+            $url = Storage::url($path);
+            $data['image'] = $url;
+        }
+
 
         $game = Game::create($data);
         return redirect()->route('games.index');
@@ -87,8 +95,7 @@ class GameController extends Controller
     public function show(CategoryOfGames $category)
     {
         $category = CategoryOfGames::all();
-        $games=Game::where('category_id',$category)->get();
-        dd($id);
+        $games = Game::where('category_id', $category)->get();
 
         return view('dashboard.games.allgame', compact('games', 'category'));
     }
@@ -101,10 +108,10 @@ class GameController extends Controller
      */
     public function edit($id)
     {
-        $games=Game::all();
-        $category=CategoryOfGames::all();
-        $games=Game::find($id);
-        return view('dashboard.games.edit',compact('games','category'));
+        $games = Game::all();
+        $category = CategoryOfGames::all();
+        $games = Game::find($id);
+        return view('dashboard.games.edit', compact('games', 'category'));
     }
 
     /**
@@ -116,7 +123,9 @@ class GameController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $data = $request->all();
         $games = Game::find($id);
+        $oldimage = $games->image;
         $request->validate([
             'name' => 'required|string',
             'link' => 'string',
@@ -125,15 +134,38 @@ class GameController extends Controller
             'category_id' => 'required|integer',
             'backgrounder' => 'file',
         ]);
+//        $oldImage = public_path("/app/public/images/".$games->image);
+//        if (Storage::exists($oldImage)) {
+//            Storage::delete($oldImage);
+//        }
+//        $oldbackgrounder = public_path("/app/public/images/{$games->backgrounder}");
+//        if (Storage::exists($oldbackgrounder)) {
+//            Storage::delete($oldbackgrounder);
+//        }
 
-        $data = $request->all();
+        $oldimage = $games->image;
         $image = $request->file('image');
-        if ($request->hasFile($data)) {
-            $imgurl = $image->store('image', 'public');
-            $data['image'] = $imgurl;
+        if ($request->hasFile('image')) {
+            if (Storage::exists('/images/' .$oldimage)) {
+                Storage::delete('/images/' . $oldimage);
+
+
+            }
+            $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
+            $path = Storage::putFileAs('public/images', $image, $fileName);
+            $url = Storage::url($path);
+            $data['image'] = $url;
         }
+
+//
+//        $backgrounder=$request->file('backgrounder');
+//            $backgrounderfileName=uniqid() . '.' . $backgrounder->getClientOriginalExtension();
+//            $backgrounderpath=Storage::putFileAs('public/images', $backgrounder, $backgrounderfileName);
+//            $backgrounderurl=Storage::url($backgrounderpath);
+//            $data['backgrounder']=$backgrounderurl;
+
+
         $games->update($data);
-        $games->save();
         return redirect()->route('games.index');
     }
 
@@ -145,7 +177,7 @@ class GameController extends Controller
      */
     public function destroy($id)
     {
-        $games=Game::find($id);
+        $games = Game::find($id);
         $games->delete();
         return redirect()->route('games.index');
 

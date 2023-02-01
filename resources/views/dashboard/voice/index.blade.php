@@ -28,7 +28,7 @@
                                 <td>{{$item->name}}</td>
 {{--                                <td>{{$item->category->name}}</td>--}}
                                 <td><audio controls>
-                                        <source src="{{ route('voice.show', array($item->id)) }}" type="audio/mpeg">
+                                        <source src="{{ $item->voice_file }}" type="audio/mpeg">
                                     </audio>
                                 </td>
                                 <td>

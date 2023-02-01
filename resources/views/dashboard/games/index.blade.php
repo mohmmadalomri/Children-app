@@ -27,7 +27,7 @@
                             @foreach($games as $game )
                                 <td>{{$game->name}}</td>
                                 <td>{{$game->description}}</td>
-                                <td> <img src="{{asset($game->image)}}" style="height: 50px" style="width: 50px"></td>
+                                <td> <img src="{{asset( $game->image)}}" style="height: 50px" style="width: 50px"></td>
                                 <td>
                                     <div class="dropdown">
                                         <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0"

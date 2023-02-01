@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Question;
 use App\Models\Translation;
 use App\Models\TranslationCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class TranslationController extends Controller
@@ -48,10 +50,14 @@ class TranslationController extends Controller
         ]);
         $data=$request->all();
         $image=$request->file('image');
-        $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
-        $path = Storage::putFileAs('public/images', $image, $fileName);
-        $url = Storage::url($path);
-        $data['image']=$url;
+        if ($request->hasFile('image')){
+
+            $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
+            $path = Storage::putFileAs('public/images', $image, $fileName);
+            $url = Storage::url($path);
+            $data['image']=$url;
+        }
+
         $translation=Translation::create($data);
         return redirect()->route('translation.index');
     }
@@ -90,14 +96,25 @@ class TranslationController extends Controller
     public function update(Request $request, $id)
     {
         $translation=Translation::find($id);
-
+        $oldImage = public_path('storage/'.$translation->image);
+        if (File::exists('storage/'.$oldImage)) {
+            File::delete('storage/'.$oldImage);
+        }
         $request->validate([
             'name'=>'string|required',
             'link'=>'string|required',
             'image'=>'file|required'
         ]);
         $data=$request->all();
-        $translation=Translation::update($data);
+        $image=$request->file('image');
+        if ($request->hasFile('image')){
+            $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
+            $path = Storage::putFileAs('public/images', $image, $fileName);
+            $url = Storage::url($path);
+            $data['image']=$url;
+        }
+
+        $translation->update($data);
         return redirect()->route('translation.index');
 
     }
