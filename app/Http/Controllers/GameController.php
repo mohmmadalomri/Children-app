@@ -148,8 +148,6 @@ class GameController extends Controller
         if ($request->hasFile('image')) {
             if (Storage::exists('/images/' .$oldimage)) {
                 Storage::delete('/images/' . $oldimage);
-
-
             }
             $fileName = uniqid() . '.' . $image->getClientOriginalExtension();
             $path = Storage::putFileAs('public/images', $image, $fileName);
@@ -157,6 +155,13 @@ class GameController extends Controller
             $data['image'] = $url;
         }
 
+        $backgrounder = $request->file('backgrounder');
+        if ($request->file('backgrounder')) {
+            $backgrounderfileName = uniqid() . '.' . $backgrounder->getClientOriginalExtension();
+            $backgrounderpath = Storage::putFileAs('public/images', $backgrounder, $backgrounderfileName);
+            $backgrounderurl = Storage::url($backgrounderpath);
+            $data['backgrounder'] = $backgrounderurl;
+        }
 //
 //        $backgrounder=$request->file('backgrounder');
 //            $backgrounderfileName=uniqid() . '.' . $backgrounder->getClientOriginalExtension();

@@ -103,7 +103,7 @@ class QuestionController extends Controller
             'link'=>'required|url',
             'image'=>'required|image',
         ]);
-        $oldImage = public_path("/uploads/items/{$question->image}");
+        $oldImage = public_path("/public/storage/images/{$question->image}");
         if (File::exists('public/images'.$oldImage)) {
             File::delete('public/images'.$oldImage);
         }
